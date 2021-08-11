@@ -9,16 +9,20 @@ on:
 jobs:
   Default:
     runs-on: ubuntu-18.04
+    env:
+        GIT_PRIVATE_KEY: ${{ secrets.GIT_PRIVATE_KEY }}
+        
     if: "!contains(github.event.head_commit.message, '[skip-ci]')"
     steps:
     - uses: actions/checkout@main
-        
+
   
     ############# Prepare #############
 
     - name: Install prereq and save build number
       id: build_info
       uses: pip-devops/actions/node/prepare@v1
+
 
     # ############# Build and test #############
 
@@ -27,6 +31,7 @@ jobs:
 
     - name: Test the component
       uses: pip-devops/actions/node/test@v1
+
 
     ############# Release to dockerhub #############
 
@@ -40,7 +45,7 @@ jobs:
         sudo apt-get install -y powershell
 
 
-    - name: Release to docker hub
+    - name: Release to Docker Hub
       run: ./publish.ps1
       env: 
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
