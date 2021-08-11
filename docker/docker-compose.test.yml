@@ -9,12 +9,12 @@ services:
     links:
       - mongo
       - postgres
-      # - sqlserver
       - mysql
-      # - couchbase
       - elasticsearch
       - prometheus
       - pushgateway
+      # - sqlserver
+      # - couchbase
     
     environment:
       - MONGO_SERVICE_HOST=mongo
@@ -26,17 +26,6 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASS=postgres
       - POSTGRES_DB=test
-
-      # - COUCHBASE_SERVICE_HOST=couchbase
-      # - COUCHBASE_SERVICE_PORT=8091
-      # - COUCHBASE_USER=Administrator
-      # - COUCHBASE_PASS=password
-
-      # - SQLSERVER_HOST=sqlserver
-      # - SQLSERVER_PORT=1433
-      # - SQLSERVER_USER=sa
-      # - SQLSERVER_PASSWORD=sqlserver_123
-      # - SQLSERVER_DB=master
 
       - MYSQL_HOST=mysql
       - MYSQL_PORT=3306
@@ -55,6 +44,17 @@ services:
       - ELASTICSEARCH_SERVICE_HOST=elasticsearch
       - ELASTICSEARCH_SERVICE_PORT=9200
 
+      # - COUCHBASE_SERVICE_HOST=couchbase
+      # - COUCHBASE_SERVICE_PORT=8091
+      # - COUCHBASE_USER=Administrator
+      # - COUCHBASE_PASS=password
+
+      # - SQLSERVER_HOST=sqlserver
+      # - SQLSERVER_PORT=1433
+      # - SQLSERVER_USER=sa
+      # - SQLSERVER_PASSWORD=sqlserver_123
+      # - SQLSERVER_DB=master
+
   mongo:
     image: mongo:latest
 
@@ -64,13 +64,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: test
-
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    container_name: sqlserver
-    environment:
-      ACCEPT_EULA: Y
-      SA_PASSWORD: sqlserver_123
 
   mysql:
     image: mysql:latest
@@ -82,9 +75,6 @@ services:
       MYSQL_USER: 'user'
       MYSQL_PASSWORD: 'password'
       MYSQL_ROOT_PASSWORD: 'password'
-
-  # couchbase:
-  #   image: couchbase/server-sandbox:6.0.1
   
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.2.3
@@ -105,5 +95,15 @@ services:
   pushgateway:
     image: prom/pushgateway:latest
     container_name: pushgateway
+
+  # sqlserver:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   container_name: sqlserver
+  #   environment:
+  #     ACCEPT_EULA: Y
+  #     SA_PASSWORD: sqlserver_123
+
+  # couchbase:
+  #   image: couchbase/server-sandbox:6.0.1
 
   
