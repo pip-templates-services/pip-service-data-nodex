@@ -20,7 +20,7 @@ class EntitiesJsonPostgresPersistence extends pip_services3_postgres_nodex_1.Ide
     }
     defineSchema() {
         this.ensureTable('VARCHAR(32)', 'JSONB');
-        this.ensureIndex('entities_json_site_id', { "data->>'site_id'": 1 });
+        this.ensureIndex('entities_json_site_id', { "(data->>'site_id')": 1 });
     }
     composeFilter(filter) {
         filter = filter || new pip_services3_commons_nodex_1.FilterParams();

@@ -19,7 +19,7 @@ export class EntitiesJsonPostgresPersistence
 
     protected defineSchema(): void {
         this.ensureTable('VARCHAR(32)', 'JSONB');
-        this.ensureIndex('entities_json_site_id', { "data->>'site_id'": 1 });
+        this.ensureIndex('entities_json_site_id', { "(data->>'site_id')": 1 });
     }
 
     private composeFilter(filter: FilterParams): any {
