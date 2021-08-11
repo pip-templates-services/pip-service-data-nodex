@@ -1,0 +1,6 @@
+{
+    "name": "pip-service-data-nodex",
+    "registry": "pipdevs",
+    "version": "1.0.0",
+    "build": 99
+}

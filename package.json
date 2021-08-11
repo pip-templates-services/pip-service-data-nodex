@@ -1,0 +1,49 @@
+{
+  "name": "pip-service-data-nodex",
+  "version": "1.0.0",
+  "main": "./obj/src/index.js",
+  "typings": "./obj/src/index.d.ts",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "private": false,
+  "scripts": {
+    "service": "node ./bin/main.js",
+    "test": "mocha -t 5000 -R spec -u tdd --recursive ./obj/test",
+    "test_30s": "mocha -t 30000 -R spec -u tdd --recursive ./obj/test",
+    "benchmark": "node ./obj/benchmark/main.js",
+    "protogen": "cd src/protos && protoc --plugin=protoc-gen-ts=../../node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./ --ts_out=. --grpc_out=. --plugin=protoc-gen-grpc=../../node_modules/.bin/grpc_tools_node_protoc_plugin entities_v1.proto",
+    "delay_test": "sleep 60 && echo Continue... && mocha -t 30000 -R spec -u tdd --recursive ./obj/test"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.965.0",
+    "pip-services3-aws-nodex": "^1.0.*",
+    "pip-services3-commons-nodex": "^1.0.*",
+    "pip-services3-components-nodex": "^1.0.*",
+    "pip-services3-container-nodex": "^1.0.*",
+    "pip-services3-couchbase-nodex": "^1.0.*",
+    "pip-services3-data-nodex": "^1.0.*",
+    "pip-services3-datadog-nodex": "^1.0.*",
+    "pip-services3-elasticsearch-nodex": "^1.0.*",
+    "pip-services3-grpc-nodex": "^1.0.3",
+    "pip-services3-mongodb-nodex": "^1.0.*",
+    "pip-services3-mysql-nodex": "^1.0.*",
+    "pip-services3-postgres-nodex": "^1.0.*",
+    "pip-services3-prometheus-nodex": "^1.0.*",
+    "pip-services3-rpc-nodex": "^1.0.*",
+    "pip-services3-sqlserver-nodex": "^1.0.*",
+    "pip-services3-swagger-nodex": "^1.0.*"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/mocha": "^8.0.0",
+    "@types/node": "^10.3.0",
+    "chai": "^4.3.4",
+    "google-protobuf": "^3.7.1",
+    "grpc-tools": "^1.8.1",
+    "mocha": "^9.0.3",
+    "restify": "^4.3.0",
+    "ts-protoc-gen": "^0.9.0"
+  }
+}
