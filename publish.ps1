@@ -21,3 +21,8 @@ if ($env:DOCKER_USER -ne $null -and $env:DOCKER_PASS -ne $null) {
 
 # Push image to docker registry
 docker push $rcImage
+
+# Check that image was pushed successfully
+if ($LastExitCode -ne 0) {
+    Write-Error "Can't push image '$rcImage' to docker registry. Make sure you use correct credentials in environment variables DOCKER_USER AND DOCKER_PASS on login or check package.ps1 logs." -ErrorAction Stop
+}
