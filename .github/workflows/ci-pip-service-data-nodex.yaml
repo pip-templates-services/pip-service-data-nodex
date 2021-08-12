@@ -44,6 +44,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y powershell
 
+    - name: Package container
+      run: ./package.ps1
 
     - name: Release to Docker Hub
       run: ./publish.ps1
