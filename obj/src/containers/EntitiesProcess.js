@@ -7,6 +7,7 @@ const pip_services3_elasticsearch_nodex_1 = require("pip-services3-elasticsearch
 const pip_services3_container_nodex_1 = require("pip-services3-container-nodex");
 const pip_services3_prometheus_nodex_1 = require("pip-services3-prometheus-nodex");
 const pip_services3_rpc_nodex_1 = require("pip-services3-rpc-nodex");
+const pip_services3_grpc_nodex_1 = require("pip-services3-grpc-nodex");
 const pip_services3_swagger_nodex_1 = require("pip-services3-swagger-nodex");
 const EntitiesServiceFactory_1 = require("../build/EntitiesServiceFactory");
 class EntitiesProcess extends pip_services3_container_nodex_1.ProcessContainer {
@@ -18,6 +19,7 @@ class EntitiesProcess extends pip_services3_container_nodex_1.ProcessContainer {
         this._factories.add(new pip_services3_datadog_nodex_1.DefaultDataDogFactory());
         this._factories.add(new pip_services3_rpc_nodex_1.DefaultRpcFactory());
         this._factories.add(new pip_services3_swagger_nodex_1.DefaultSwaggerFactory());
+        this._factories.add(new pip_services3_grpc_nodex_1.DefaultGrpcFactory());
     }
 }
 exports.EntitiesProcess = EntitiesProcess;

@@ -198,7 +198,7 @@
 
 {{#if GRPC_ENABLED}}
 # Common GRPC endpoint
-- descriptor: "pip-service-data:endpoint:grpc:default:1.0"
+- descriptor: "pip-services:endpoint:grpc:default:1.0"
   connection:
     protocol: http
     host: 0.0.0.0
