@@ -1,13 +1,11 @@
 /** @module container */
 
-import { Descriptor } from 'pip-services3-commons-nodex';
-import { CommandableLambdaFunction } from 'pip-services3-aws-nodex';
+import { LambdaFunction } from 'pip-services3-aws-nodex';
 import { EntitiesServiceFactory } from '../build/EntitiesServiceFactory';
 
-export class EntitiesLambdaFunction extends CommandableLambdaFunction {
+export class EntitiesLambdaFunction extends LambdaFunction {
     public constructor() {
-        super("entities", "Entities microservice");
-        this._dependencyResolver.put('controller', new Descriptor('entities', 'controller', 'default', '*', '*'));
+        super("pip-service-data", "Entities data microservice");
         this._factories.add(new EntitiesServiceFactory());
     }
 }

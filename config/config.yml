@@ -1,8 +1,8 @@
 ---
 # Container descriptor
 - descriptor: "pip-services:context-info:default:default:1.0"
-  name: "entities"
-  description: "Entities microservice"
+  name: "pip-service-data"
+  description: "Entities data microservice"
 
 # Console logger
 - descriptor: "pip-services:logger:console:default:1.0"
@@ -72,13 +72,13 @@
 
 {{#if FILE_ENABLED}}
 # File persistence
-- descriptor: "entities:persistence:file:default:1.0"
+- descriptor: "pip-service-data:persistence:file:default:1.0"
   path: {{FILE_PATH}}{{#unless FILE_PATH}}"./data/entities.json"{{/unless}}
 {{/if}}
 
 {{#if MONGO_ENABLED}}
 # MongoDb persistence
-- descriptor: "entities:persistence:mongodb:default:1.0"
+- descriptor: "pip-service-data:persistence:mongodb:default:1.0"
   connection:
     uri: {{MONGO_SERVICE_URI}}
     host: {{MONGO_SERVICE_HOST}}{{#unless MONGO_SERVICE_HOST}}"localhost"{{/unless}}
@@ -92,9 +92,9 @@
 {{#if POSTGRES_ENABLED}}
 # PostreSQL Persistence
 {{#if POSTGRES_JSON_ENABLED}}
-- descriptor: "entities:persistence:json-postgres:default:1.0"
+- descriptor: "pip-service-data:persistence:json-postgres:default:1.0"
 {{else}}
-- descriptor: "entities:persistence:postgres:default:1.0"
+- descriptor: "pip-service-data:persistence:postgres:default:1.0"
 {{/if}}
   table: {{POSTGRES_TABLE}}{{#unless POSTGRES_TABLE}}id_records{{/unless}}
   connection:
@@ -110,9 +110,9 @@
 {{#if SQLSERVER_ENABLED}}
 # SQL Server Persistence
 {{#if SQLSERVER_JSON_ENABLED}}
-- descriptor: "entities:persistence:json-sqlserver:default:1.0"
+- descriptor: "pip-service-data:persistence:json-sqlserver:default:1.0"
 {{else}}
-- descriptor: "entities:persistence:sqlserver:default:1.0"
+- descriptor: "pip-service-data:persistence:sqlserver:default:1.0"
 {{/if}}
   table: {{SQLSERVER_TABLE}}{{#unless SQLSERVER_TABLE}}entities{{/unless}}
   connection:
@@ -128,9 +128,9 @@
 {{#if MYSQL_ENABLED}}
 # MYSQL Persistence
 {{#if MYSQL_JSON_ENABLED}}
-- descriptor: "entities:persistence:json-mysql:default:1.0"
+- descriptor: "pip-service-data:persistence:json-mysql:default:1.0"
 {{else}}
-- descriptor: "entities:persistence:mysql:default:1.0"
+- descriptor: "pip-service-data:persistence:mysql:default:1.0"
 {{/if}}
   connection:
     uri: {{MYSQL_URI}}
@@ -144,7 +144,7 @@
 
 {{#if COUCHBASE_ENABLED}}
 # Couchbase Persistence
-- descriptor: "entities:persistence:couchbase:default:1.0"
+- descriptor: "pip-service-data:persistence:couchbase:default:1.0"
   bucket: {{COUCHBASE_BUCKET}}{{#unless COUCHBASE_BUCKET}}test{{/unless}}
   connection:
     uri: {{COUCHBASE_SERVICE_URI}}
@@ -160,14 +160,14 @@
 {{#unless MYSQL_ENABLED}}{{#unless SQLSERVER_ENABLED}}
 {{#unless POSTGRES_ENABLED}}
 # Default to in-memory persistence, if nothing is set
-- descriptor: "entities:persistence:memory:default:1.0"
+- descriptor: "pip-service-data:persistence:memory:default:1.0"
 {{/unless}}{{/unless}}
 {{/unless}}{{/unless}}
 {{/unless}}{{/unless}}
 {{/unless}}
 
 # Controller
-- descriptor: "entities:controller:default:default:1.0"
+- descriptor: "pip-service-data:controller:default:default:1.0"
 
 {{#if HTTP_ENABLED}}
 # Common HTTP endpoint
@@ -177,8 +177,8 @@
     host: 0.0.0.0
     port: {{HTTP_PORT}}{{#unless HTTP_PORT}}8080{{/unless}}
 
-# HTTP endpoint service version 1.0
-- descriptor: "entities:service:commandable-http:default:1.0"
+# HTTP service version 1.0
+- descriptor: "pip-service-data:service:commandable-http:default:1.0"
   swagger:
     enable: true
     auto: true
@@ -198,15 +198,20 @@
 
 {{#if GRPC_ENABLED}}
 # Common GRPC endpoint
-- descriptor: "entities:endpoint:grpc:default:1.0"
+- descriptor: "pip-service-data:endpoint:grpc:default:1.0"
   connection:
     protocol: http
     host: 0.0.0.0
     port: {{GRPC_PORT}}{{#unless GRPC_PORT}}8090{{/unless}}
 
-# GRPC endpoint service version 1.0
-- descriptor: "entities:service:grpc:default:1.0"
+# GRPC service version 1.0
+- descriptor: "pip-service-data:service:grpc:default:1.0"
 
-# Commandable GRPC endpoint version 1.0
-- descriptor: "entities:service:commandable-grpc:default:1.0"
+# Commandable GRPC version 1.0
+- descriptor: "pip-service-data:service:commandable-grpc:default:1.0"
+{{/if}}
+
+{{#if LAMBDA_ENABLED}}
+# Commandable Lambda service version 1.0
+- descriptor: "pip-service-data:service:commandable-lambda:default:1.0"
 {{/if}}

@@ -2,9 +2,9 @@ const assert = require('chai').assert;
 
 import { ConfigParams } from 'pip-services3-commons-nodex';
 
-import { EntityV1 } from '../../src/data/version1/EntityV1';
-import { EntityTypeV1 } from '../../src/data/version1/EntityTypeV1';
-import { EntitiesLambdaFunction } from '../../src/containers/EntitiesLambdaFunction';
+import { EntityV1 } from '../../../src/data/version1/EntityV1';
+import { EntityTypeV1 } from '../../../src/data/version1/EntityTypeV1';
+import { EntitiesLambdaFunction } from '../../../src/containers/EntitiesLambdaFunction';
 
 const ENTITY1: EntityV1 = {
     id: '1',
@@ -21,19 +21,19 @@ const ENTITY2: EntityV1 = {
     content: 'XYZ'
 };
 
-suite('EntitiesLambdaFunction', ()=> {
+suite('EntitiesCommandableLambdaServiceV1', ()=> {
     let lambda: EntitiesLambdaFunction;
 
     suiteSetup(async () => {
         let config = ConfigParams.fromTuples(
             'logger.descriptor', 'pip-services:logger:console:default:1.0',
-            'persistence.descriptor', 'entities:persistence:memory:default:1.0',
-            'controller.descriptor', "entities:controller:default:default:1.0"
+            'persistence.descriptor', 'pip-service-data:persistence:memory:default:1.0',
+            'controller.descriptor', 'pip-service-data:controller:default:default:1.0',
+            'service.descriptor', 'pip-service-data:service:commandable-lambda:default:1.0'
         );
 
         lambda = new EntitiesLambdaFunction();
         lambda.configure(config);
-
         await lambda.open(null);
     });
     
@@ -45,8 +45,7 @@ suite('EntitiesLambdaFunction', ()=> {
         // Create one entity
         let entity = await lambda.act(
             {
-                role: 'entities',
-                cmd: 'create_entity',
+                cmd: 'v1.entities.create_entity',
                 entity: ENTITY1
             }
         );
@@ -62,8 +61,7 @@ suite('EntitiesLambdaFunction', ()=> {
         // Create another entity
         entity = await lambda.act(
             {
-                role: 'entities',
-                cmd: 'create_entity',
+                cmd: 'v1.entities.create_entity',
                 entity: ENTITY2
             }
         );
@@ -77,8 +75,7 @@ suite('EntitiesLambdaFunction', ()=> {
         // Get all entities
         let page = await lambda.act(
             {
-                role: 'entities',
-                cmd: 'get_entities',
+                cmd: 'v1.entities.get_entities',
                 filter: {}
             }
         );
@@ -90,8 +87,7 @@ suite('EntitiesLambdaFunction', ()=> {
 
         entity = await lambda.act(
             {
-                role: 'entities',
-                cmd: 'update_entity',
+                cmd: 'v1.entities.update_entity',
                 entity: entity1
             }
         );
@@ -102,8 +98,7 @@ suite('EntitiesLambdaFunction', ()=> {
         // Delete account
         entity = await lambda.act(
             {
-                role: 'entities',
-                cmd: 'delete_entity_by_id',
+                cmd: 'v1.entities.delete_entity_by_id',
                 entity_id: entity1.id,
             }
         );
@@ -111,8 +106,7 @@ suite('EntitiesLambdaFunction', ()=> {
         // Try to get delete entity
         entity = await lambda.act(
             {
-                role: 'entities',
-                cmd: 'get_entity_by_id',
+                cmd: 'v1.entities.get_entity_by_id',
                 entity_id: entity1.id,
             }
         );

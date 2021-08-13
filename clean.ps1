@@ -9,6 +9,7 @@ $latestImage="$($component.registry)/$($component.name):latest"
 
 # Clean up build directories
 Get-ChildItem -Path "." -Include "obj" -Recurse | foreach($_) { Remove-Item -Force -Recurse $_.FullName }
+Get-ChildItem -Path "." -Include "dist" -Recurse | foreach($_) { Remove-Item -Force -Recurse $_.FullName }
 Get-ChildItem -Path "." -Include "node_modules" -Recurse | foreach($_) { Remove-Item -Force -Recurse $_.FullName }
 
 # Remove docker images

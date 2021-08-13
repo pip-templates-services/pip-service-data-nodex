@@ -11,7 +11,7 @@ const pip_services3_swagger_nodex_1 = require("pip-services3-swagger-nodex");
 const EntitiesServiceFactory_1 = require("../build/EntitiesServiceFactory");
 class EntitiesProcess extends pip_services3_container_nodex_1.ProcessContainer {
     constructor() {
-        super('entities', 'Entities microservice');
+        super('pip-service-data', 'Entities data microservice');
         this._factories.add(new EntitiesServiceFactory_1.EntitiesServiceFactory());
         this._factories.add(new pip_services3_elasticsearch_nodex_1.DefaultElasticSearchFactory());
         this._factories.add(new pip_services3_prometheus_nodex_1.DefaultPrometheusFactory());

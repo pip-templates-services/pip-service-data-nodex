@@ -17,7 +17,7 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
 	
     public constructor() {
         super(services.EntitiesService);
-        this._dependencyResolver.put('controller', new Descriptor("entities", "controller", "*", "*", "*"));
+        this._dependencyResolver.put('controller', new Descriptor("pip-service-data", "controller", "*", "*", "*"));
     }
 
 	public setReferences(references: IReferences): void {

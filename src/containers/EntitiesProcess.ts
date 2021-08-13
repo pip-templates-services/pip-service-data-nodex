@@ -10,7 +10,7 @@ import { EntitiesServiceFactory } from '../build/EntitiesServiceFactory';
 
 export class EntitiesProcess extends ProcessContainer{
     public constructor(){
-        super('entities', 'Entities microservice');
+        super('pip-service-data', 'Entities data microservice');
 
         this._factories.add(new EntitiesServiceFactory());
         this._factories.add(new DefaultElasticSearchFactory());

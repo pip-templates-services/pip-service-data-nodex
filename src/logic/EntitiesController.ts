@@ -29,7 +29,7 @@ export class EntitiesController implements IEntitiesController, IConfigurable, I
 
     public setReferences(references: IReferences): void {
         this._persistence = references.getOneRequired<IEntitiesPersistence>(
-            new Descriptor('entities', 'persistence', '*', '*', '1.0')
+            new Descriptor('pip-service-data', 'persistence', '*', '*', '1.0')
         );
     }
 

@@ -10,7 +10,7 @@ class EntitiesController {
     configure(config) {
     }
     setReferences(references) {
-        this._persistence = references.getOneRequired(new pip_services3_commons_nodex_1.Descriptor('entities', 'persistence', '*', '*', '1.0'));
+        this._persistence = references.getOneRequired(new pip_services3_commons_nodex_1.Descriptor('pip-service-data', 'persistence', '*', '*', '1.0'));
     }
     getCommandSet() {
         if (this._commandSet == null) {

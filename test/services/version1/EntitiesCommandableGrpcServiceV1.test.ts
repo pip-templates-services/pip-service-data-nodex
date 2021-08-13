@@ -55,9 +55,9 @@ suite('EntitiesCommandableGrpcServiceV1', () => {
         client.configure(grpcConfig);
 
         let references = References.fromTuples(
-            new Descriptor('entities', 'persistence', 'memory', 'default', '1.0'), persistence,
-            new Descriptor('entities', 'controller', 'default', 'default', '1.0'), controller,
-            new Descriptor('entities', 'service', 'grpc', 'default', '1.0'), service
+            new Descriptor('pip-service-data', 'persistence', 'memory', 'default', '1.0'), persistence,
+            new Descriptor('pip-service-data', 'controller', 'default', 'default', '1.0'), controller,
+            new Descriptor('pip-service-data', 'service', 'grpc', 'default', '1.0'), service
         );
 
         controller.setReferences(references);

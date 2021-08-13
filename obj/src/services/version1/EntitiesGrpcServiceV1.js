@@ -22,7 +22,7 @@ const EntitiesGrpcConverterV1_1 = require("./EntitiesGrpcConverterV1");
 class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
     constructor() {
         super(services.EntitiesService);
-        this._dependencyResolver.put('controller', new pip_services3_commons_nodex_1.Descriptor("entities", "controller", "*", "*", "*"));
+        this._dependencyResolver.put('controller', new pip_services3_commons_nodex_1.Descriptor("pip-service-data", "controller", "*", "*", "*"));
     }
     setReferences(references) {
         super.setReferences(references);

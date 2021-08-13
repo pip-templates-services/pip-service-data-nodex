@@ -16,7 +16,7 @@ class EntitiesRestServiceV1 extends pip_services3_rpc_nodex_1.RestService {
     constructor() {
         super();
         this._baseRoute = "v1/entities";
-        this._dependencyResolver.put("controller", new pip_services3_commons_nodex_1.Descriptor("entities", "controller", "default", "*", "*"));
+        this._dependencyResolver.put("controller", new pip_services3_commons_nodex_1.Descriptor("pip-service-data", "controller", "default", "*", "*"));
     }
     setReferences(references) {
         super.setReferences(references);

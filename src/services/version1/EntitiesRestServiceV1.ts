@@ -12,7 +12,7 @@ export class EntitiesRestServiceV1 extends RestService {
         this._baseRoute = "v1/entities";
         this._dependencyResolver.put(
             "controller",
-            new Descriptor("entities", "controller", "default", "*", "*")
+            new Descriptor("pip-service-data", "controller", "default", "*", "*")
         );
     }
 
