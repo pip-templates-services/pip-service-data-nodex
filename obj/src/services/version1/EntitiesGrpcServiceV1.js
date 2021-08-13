@@ -35,6 +35,7 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.setMap(filter, call.request.getFilterMap());
             let paging = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.toPagingParams(call.request.getPaging());
             let response = new messages.EntitiesPageReply();
+            let timing = this.instrument(correlationId, "get_entities");
             try {
                 let result = yield this._controller.getEntities(correlationId, filter, paging);
                 let page = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromEntitiesPage(result);
@@ -43,6 +44,10 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             catch (err) {
                 let error = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromError(err);
                 response.setError(error);
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
             }
             return response;
         });
@@ -52,6 +57,7 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             let correlationId = call.request.getCorrelationId();
             let id = call.request.getEntityId();
             let response = new messages.EntityReply();
+            let timing = this.instrument(correlationId, "get_entity_by_id");
             try {
                 let result = yield this._controller.getEntityById(correlationId, id);
                 let entity = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromEntity(result);
@@ -60,6 +66,10 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             catch (err) {
                 let error = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromError(err);
                 response.setError(error);
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
             }
             return response;
         });
@@ -69,6 +79,7 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             let correlationId = call.request.getCorrelationId();
             let name = call.request.getName();
             let response = new messages.EntityReply();
+            let timing = this.instrument(correlationId, "get_entity_by_name");
             try {
                 let result = yield this._controller.getEntityByName(correlationId, name);
                 let entity = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromEntity(result);
@@ -77,6 +88,10 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             catch (err) {
                 let error = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromError(err);
                 response.setError(error);
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
             }
             return response;
         });
@@ -87,6 +102,7 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             let entity = call.request.getEntity();
             entity = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.toEntity(entity);
             let response = new messages.EntityReply();
+            let timing = this.instrument(correlationId, "create_entity");
             try {
                 let result = yield this._controller.createEntity(correlationId, entity);
                 entity = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromEntity(result);
@@ -95,6 +111,10 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             catch (err) {
                 let error = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromError(err);
                 response.setError(error);
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
             }
             return response;
         });
@@ -105,6 +125,7 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             let entity = call.request.getEntity();
             entity = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.toEntity(entity);
             let response = new messages.EntityReply();
+            let timing = this.instrument(correlationId, "update_entity");
             try {
                 let result = yield this._controller.updateEntity(correlationId, entity);
                 entity = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromEntity(result);
@@ -113,6 +134,10 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             catch (err) {
                 let error = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromError(err);
                 response.setError(error);
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
             }
             return response;
         });
@@ -123,6 +148,7 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             let id = call.request.getEntityId();
             ;
             let response = new messages.EntityReply();
+            let timing = this.instrument(correlationId, "delete_entity_by_id");
             try {
                 let result = yield this._controller.deleteEntityById(correlationId, id);
                 let entity = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromEntity(result);
@@ -131,6 +157,10 @@ class EntitiesGrpcServiceV1 extends pip_services3_grpc_nodex_1.GrpcService {
             catch (err) {
                 let error = EntitiesGrpcConverterV1_1.EntitiesGrpcConverterV1.fromError(err);
                 response.setError(error);
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
             }
             return response;
         });

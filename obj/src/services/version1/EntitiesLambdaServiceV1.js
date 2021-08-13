@@ -30,29 +30,87 @@ class EntitiesLambdaServiceV1 extends pip_services3_aws_nodex_1.LambdaService {
         this._controller = this._dependencyResolver.getOneRequired("controller");
     }
     getEntities(params) {
-        return this._controller.getEntities(params.correlation_id, new pip_services3_commons_nodex_1.FilterParams(params.filter), new pip_services3_commons_nodex_2.PagingParams(params.paging));
+        return __awaiter(this, void 0, void 0, function* () {
+            let timing = this.instrument(params.correlation_id, "get_entities");
+            try {
+                return yield this._controller.getEntities(params.correlation_id, new pip_services3_commons_nodex_1.FilterParams(params.filter), new pip_services3_commons_nodex_2.PagingParams(params.paging));
+            }
+            catch (err) {
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
+            }
+        });
     }
     getEntityById(params) {
-        return this._controller.getEntityById(params.correlation_id, params.entity_id);
+        return __awaiter(this, void 0, void 0, function* () {
+            let timing = this.instrument(params.correlation_id, "get_entity_by_id");
+            try {
+                return yield this._controller.getEntityById(params.correlation_id, params.entity_id);
+            }
+            catch (err) {
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
+            }
+        });
     }
     getEntityByName(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this._controller.getEntityByName(params.correlation_id, params.name);
+            let timing = this.instrument(params.correlation_id, "get_entity_by_name");
+            try {
+                return yield this._controller.getEntityByName(params.correlation_id, params.name);
+            }
+            catch (err) {
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
+            }
         });
     }
     createEntity(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this._controller.createEntity(params.correlation_id, params.entity);
+            let timing = this.instrument(params.correlation_id, "create_entity");
+            try {
+                return yield this._controller.createEntity(params.correlation_id, params.entity);
+            }
+            catch (err) {
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
+            }
         });
     }
     updateEntity(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this._controller.updateEntity(params.correlation_id, params.entity);
+            let timing = this.instrument(params.correlation_id, "update_entity");
+            try {
+                return yield this._controller.updateEntity(params.correlation_id, params.entity);
+            }
+            catch (err) {
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
+            }
         });
     }
     deleteEntityById(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            return this._controller.deleteEntityById(params.correlation_id, params.entity_id);
+            let timing = this.instrument(params.correlation_id, "delete_entity_by_id");
+            try {
+                return yield this._controller.deleteEntityById(params.correlation_id, params.entity_id);
+            }
+            catch (err) {
+                timing.endFailure(err);
+            }
+            finally {
+                timing.endSuccess();
+            }
         });
     }
     register() {

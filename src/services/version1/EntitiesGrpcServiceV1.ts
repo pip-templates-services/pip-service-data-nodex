@@ -32,6 +32,7 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         let paging = EntitiesGrpcConverterV1.toPagingParams(call.request.getPaging());
 
         let response = new messages.EntitiesPageReply();
+        let timing = this.instrument(correlationId, "get_entities");
 
         try {
             let result = await this._controller.getEntities(
@@ -44,6 +45,9 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         } catch (err) {
             let error = EntitiesGrpcConverterV1.fromError(err);
             response.setError(error);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
 
         return response;
@@ -54,6 +58,7 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         let id = call.request.getEntityId();
 
         let response = new messages.EntityReply();
+        let timing = this.instrument(correlationId, "get_entity_by_id");
 
         try {
             let result = await this._controller.getEntityById(
@@ -65,6 +70,9 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         } catch (err) {
             let error = EntitiesGrpcConverterV1.fromError(err);
             response.setError(error);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
 
         return response;
@@ -75,6 +83,7 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         let name = call.request.getName();
     
         let response = new messages.EntityReply();
+        let timing = this.instrument(correlationId, "get_entity_by_name");
 
         try {
             let result = await this._controller.getEntityByName(
@@ -86,6 +95,9 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         } catch (err) {
             let error = EntitiesGrpcConverterV1.fromError(err);
             response.setError(error);            
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
 
         return response;
@@ -97,6 +109,7 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         entity = EntitiesGrpcConverterV1.toEntity(entity);
 
         let response = new messages.EntityReply();
+        let timing = this.instrument(correlationId, "create_entity");
 
         try {
             let result = await this._controller.createEntity(
@@ -108,6 +121,9 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         } catch (err) {
             let error = EntitiesGrpcConverterV1.fromError(err);
             response.setError(error);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
 
         return response;
@@ -119,6 +135,7 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         entity = EntitiesGrpcConverterV1.toEntity(entity);
 
         let response = new messages.EntityReply();
+        let timing = this.instrument(correlationId, "update_entity");
 
         try {
             let result = await this._controller.updateEntity(
@@ -130,6 +147,9 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         } catch (err) {
             let error = EntitiesGrpcConverterV1.fromError(err);
             response.setError(error);            
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
 
         return response;
@@ -140,6 +160,7 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         let id = call.request.getEntityId();;
 
         let response = new messages.EntityReply();
+        let timing = this.instrument(correlationId, "delete_entity_by_id");
 
         try {
             let result = await this._controller.deleteEntityById(
@@ -151,6 +172,9 @@ export class EntitiesGrpcServiceV1 extends GrpcService {
         } catch (err) {
             let error = EntitiesGrpcConverterV1.fromError(err);
             response.setError(error);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
 
         return response;

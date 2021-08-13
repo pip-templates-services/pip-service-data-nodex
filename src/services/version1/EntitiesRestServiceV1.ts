@@ -26,11 +26,15 @@ export class EntitiesRestServiceV1 extends RestService {
         let filter = req.param('filter');
         let paging = req.param('paging');
 
+        let timing = this.instrument(correlationId, "get_entities");
         try {
             let result = await this._controller.getEntities(correlationId, filter, paging);
             this.sendResult(req, res, result);
         } catch(err) {
             this.sendError(req, res, err);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
     }
 
@@ -38,11 +42,15 @@ export class EntitiesRestServiceV1 extends RestService {
         let correlationId = this.getCorrelationId(req);
         let id = req.route.params.id;
 
+        let timing = this.instrument(correlationId, "get_entity_by_id");
         try {
             let result = await this._controller.getEntityById(correlationId, id);
             this.sendResult(req, res, result);
         } catch (err) {
             this.sendError(req, res, err);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
     }
 
@@ -50,11 +58,15 @@ export class EntitiesRestServiceV1 extends RestService {
         let correlationId = this.getCorrelationId(req);
         let name = req.route.params.name;
 
+        let timing = this.instrument(correlationId, "get_entity_by_name");
         try {
             let result = await this._controller.getEntityByName(correlationId, name);
             this.sendResult(req, res,  result);
         } catch (err) {
             this.sendError(req, res, err);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
     }
 
@@ -62,11 +74,15 @@ export class EntitiesRestServiceV1 extends RestService {
         let correlationId = this.getCorrelationId(req);
         let data = req.body;
 
+        let timing = this.instrument(correlationId, "create_entity");
         try {
             let result = await this._controller.createEntity(correlationId, data);
             this.sendResult(req, res, result);
         } catch (err) {
             this.sendError(req, res, err);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
     }
 
@@ -74,11 +90,15 @@ export class EntitiesRestServiceV1 extends RestService {
         let correlationId = this.getCorrelationId(req);
         let data = req.body;
 
+        let timing = this.instrument(correlationId, "update_entity");
         try {
             let result = await this._controller.updateEntity(correlationId, data);
             this.sendResult(req, res, result);
         } catch (err) {
             this.sendError(req, res, err);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
     }
 
@@ -86,11 +106,15 @@ export class EntitiesRestServiceV1 extends RestService {
         let correlationId = this.getCorrelationId(req);
         let id = req.route.params.id;
 
+        let timing = this.instrument(correlationId, "delete_entity_by_id");
         try {
             let result = await this._controller.deleteEntityById(correlationId, id);
             this.sendResult(req, res, result);
         } catch (err) {
             this.sendError(req, res, err);
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
         }
     }
 

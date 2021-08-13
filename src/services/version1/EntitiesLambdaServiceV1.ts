@@ -30,47 +30,89 @@ export class EntitiesLambdaServiceV1 extends LambdaService {
         this._controller = this._dependencyResolver.getOneRequired<IEntitiesController>("controller");
     }
 
-    public getEntities(params: any): Promise<DataPage<EntityV1>> {
-        return this._controller.getEntities(
-            params.correlation_id,
-            new FilterParams(params.filter),
-            new PagingParams(params.paging)
-        );
+    public async getEntities(params: any): Promise<DataPage<EntityV1>> {
+        let timing = this.instrument(params.correlation_id, "get_entities");
+        try {
+            return await this._controller.getEntities(
+                params.correlation_id,
+                new FilterParams(params.filter),
+                new PagingParams(params.paging)
+            );
+        } catch (err) {
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
+        }
     }
 
-    public getEntityById(params: any): Promise<EntityV1> {
-        return this._controller.getEntityById(
-            params.correlation_id,
-            params.entity_id
-        );
+    public async getEntityById(params: any): Promise<EntityV1> {
+        let timing = this.instrument(params.correlation_id, "get_entity_by_id");
+        try {
+            return await this._controller.getEntityById(
+                params.correlation_id,
+                params.entity_id
+            );
+        } catch (err) {
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
+        }
     }
 
     public async getEntityByName(params: any): Promise<EntityV1> {
-        return this._controller.getEntityByName(
-            params.correlation_id,
-            params.name
-        );
+        let timing = this.instrument(params.correlation_id, "get_entity_by_name");
+        try {
+            return await this._controller.getEntityByName(
+                params.correlation_id,
+                params.name
+            );
+        } catch (err) {
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
+        }
     }
 
     public async createEntity(params: any): Promise<EntityV1> {
-        return this._controller.createEntity(
-            params.correlation_id,
-            params.entity
-        );
+        let timing = this.instrument(params.correlation_id, "create_entity");
+        try {
+            return await this._controller.createEntity(
+                params.correlation_id,
+                params.entity
+            );
+        } catch (err) {
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
+        }
     }
 
     public async updateEntity(params: any): Promise<EntityV1>{
-        return this._controller.updateEntity(
-            params.correlation_id,
-            params.entity
-        );
+        let timing = this.instrument(params.correlation_id, "update_entity");
+        try {
+            return await this._controller.updateEntity(
+                params.correlation_id,
+                params.entity
+            );
+        } catch (err) {
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
+        }
     }
 
     public async deleteEntityById(params: any): Promise<EntityV1> {
-        return this._controller.deleteEntityById(
-            params.correlation_id,
-            params.entity_id
-        );
+        let timing = this.instrument(params.correlation_id, "delete_entity_by_id");
+        try {
+            return await this._controller.deleteEntityById(
+                params.correlation_id,
+                params.entity_id
+            );
+        } catch (err) {
+            timing.endFailure(err);
+        } finally {
+            timing.endSuccess();
+        }
     }
 
     public register() {
