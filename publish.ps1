@@ -6,6 +6,7 @@ $ErrorActionPreference = "Stop"
 # Get component data and set necessary variables
 $component = Get-Content -Path "component.json" | ConvertFrom-Json
 $rcImage="$($component.registry)/$($component.name):$($component.version)-$($component.build)-rc"
+$latestImage="$($component.registry)/$($component.name):latest"
 
 # Define server name
 $pos = $component.registry.IndexOf("/")
@@ -25,4 +26,12 @@ docker push $rcImage
 # Check that image was pushed successfully
 if ($LastExitCode -ne 0) {
     Write-Error "Can't push image '$rcImage' to docker registry. Make sure you use correct credentials in environment variables DOCKER_USER AND DOCKER_PASS on login or check package.ps1 logs." -ErrorAction Stop
+}
+
+# Push image to docker registry
+docker push $latestImage
+
+# Check that image was pushed successfully
+if ($LastExitCode -ne 0) {
+    Write-Error "Can't push image '$latestImage' to docker registry. Make sure you use correct credentials in environment variables DOCKER_USER AND DOCKER_PASS on login or check package.ps1 logs." -ErrorAction Stop
 }
