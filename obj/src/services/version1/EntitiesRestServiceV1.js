@@ -138,7 +138,7 @@ class EntitiesRestServiceV1 extends pip_services3_rpc_nodex_1.RestService {
         this.registerRoute('post', '/entities', null, this.createEntity);
         this.registerRoute('put', '/entities', null, this.updateEntity);
         this.registerRoute('del', '/entities/:id', null, this.deleteEntityById);
-        this.registerOpenApiSpecFromFile("./src/swagger/entities_v1.yaml");
+        this.registerOpenApiSpecFromFile(__dirname + "/../../../../src/swagger/entities_v1.yaml");
     }
 }
 exports.EntitiesRestServiceV1 = EntitiesRestServiceV1;

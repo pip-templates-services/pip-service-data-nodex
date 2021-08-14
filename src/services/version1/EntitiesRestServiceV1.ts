@@ -126,6 +126,6 @@ export class EntitiesRestServiceV1 extends RestService {
         this.registerRoute('put', '/entities', null, this.updateEntity);
         this.registerRoute('del', '/entities/:id', null, this.deleteEntityById);
 
-        this.registerOpenApiSpecFromFile("./src/swagger/entities_v1.yaml");
+        this.registerOpenApiSpecFromFile(__dirname + "/../../../../src/swagger/entities_v1.yaml");
     }
 }
