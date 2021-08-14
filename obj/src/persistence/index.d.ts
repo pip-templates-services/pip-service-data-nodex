@@ -12,4 +12,3 @@ export { EntitiesSqlServerPersistence } from './EntitiesSqlServerPersistence';
 export { EntitiesJsonSqlServerPersistence } from './EntitiesJsonSqlServerPersistence';
 export { EntitiesMySqlPersistence } from './EntitiesMySqlPersistence';
 export { EntitiesJsonMySqlPersistence } from './EntitiesJsonMySqlPersistence';
-export { EntitiesCouchbasePersistence } from './EntitiesCouchbasePersistence';
