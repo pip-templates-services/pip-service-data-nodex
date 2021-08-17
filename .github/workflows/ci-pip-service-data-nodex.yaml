@@ -55,7 +55,9 @@ jobs:
       run: ./package.ps1
 
     - name: Package lambda
-      run: ./pack_lambda.ps1
+      run: |
+        chmod u+x ./pack_lambda.ps1
+        ./pack_lambda.ps1
 
     - name: Release to Docker Hub
       run: ./publish.ps1
