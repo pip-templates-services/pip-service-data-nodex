@@ -27,10 +27,10 @@ if (Test-Path "dist") {
     }
 
     if ($isExist) {
-        aws lambda update-function-code --function-name $functionName --zip-file fileb://lambda.zip
+        aws lambda update-function-code --function-name $functionName --zip-file "fileb://$($component.name)-lambda-v$($component.version).zip"
     }
     else {
-        # aws lambda create-function --runtime nodejs14.x --function-name $functionName --zip-file fileb://lambda.zip --role arn:aws:lambda:us-east-2
+        # aws lambda create-function --runtime nodejs14.x --function-name $functionName --zip-file "fileb://$($component.name)-lambda-v$($component.version).zip"
         Write-Output "Lambda function is does not exist"
     }
     
