@@ -34,6 +34,8 @@ try {
 # Pack archive for lambda
 try {
     
+    npm i
+
     if (Test-Path "tmp") {
         Remove-Item -Recurse -Force -Path "tmp"
     }

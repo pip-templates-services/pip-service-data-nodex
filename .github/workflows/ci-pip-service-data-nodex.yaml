@@ -43,6 +43,13 @@ jobs:
         sudo dpkg -i packages-microsoft-prod.deb
         sudo apt-get update
         sudo apt-get install -y powershell
+    
+    - name: Install node
+      run: |
+        cd ~
+        curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+        sudo bash nodesource_setup.sh
+        sudo apt install nodejs
 
     - name: Package container
       run: ./package.ps1
