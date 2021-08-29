@@ -24,6 +24,8 @@ try {
     }
     New-Item -ItemType Directory -Force -Path "dist"
 
+    $component = Get-Content -Path "component.json" | ConvertFrom-Json
+
     $compress = @{
         Path             = "./tmp/*"
         CompressionLevel = "Optimal" #"NoCompression"
