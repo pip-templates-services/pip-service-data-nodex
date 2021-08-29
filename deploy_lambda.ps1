@@ -10,7 +10,7 @@ if (Test-Path "dist") {
     }
     
     $component = Get-Content -Path "component.json" | ConvertFrom-Json
-    $functionName = "$($component.registry)/$($component.name):$($component.version)-function"
+    $functionName = "$($component.name)-$($component.version.replace('.', '-'))-function"
     $createdFunctions = (aws lambda list-functions | ConvertFrom-Json).Functions
 
     Set-Location ./dist
