@@ -3,6 +3,5 @@ package-lock.json
 /.idea
 /node_modules
 /dist
-/obj/test
 /data/*.json
 /docker/id_rsa
